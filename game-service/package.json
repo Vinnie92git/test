@@ -1,0 +1,13 @@
+{
+  "name": "game-service",
+  "version": "1.0.0",
+  "description": "Game service for Pong",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "fastify": "^4.25.0"
+  }
+}

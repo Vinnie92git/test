@@ -1,0 +1,39 @@
+services:
+  auth-service:
+    build: ./auth-service
+    env_file:
+      - ./auth-service/.env
+    expose:
+      - "3001"
+
+  user-service:
+    build: ./user-service
+    expose:
+      - "3002"
+
+  game-service:
+    build: ./game-service
+    expose:
+      - "4000"
+
+  chat-service:
+    build: ./chat-service
+    expose:
+      - "5001"  # Cambiado de 5000 a 5001
+
+  frontend:
+    build: ./frontend
+    expose:
+      - "80"
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/certs:/etc/nginx/certs:ro
+    depends_on:
+      - frontend
+      - auth-service
